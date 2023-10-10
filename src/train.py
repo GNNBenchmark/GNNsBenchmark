@@ -52,17 +52,7 @@ class Trainer:
             # Accuracy
             train_acc += alg.accuracy(dataset, labels_pred, self.train_idx, penalized, 'train')
             test_acc += alg.accuracy(dataset, labels_pred, self.test_idx, penalized, 'test')
-
-            #test_acc_groups = alg.accuracy_degree(dataset, labels_pred, self.test_idx, penalized, 'test')
-            #print(f"Fold train acc: {alg.accuracy(dataset, labels_pred, self.train_idx, penalized, 'train')}")
-            #print(f"Fold test acc: {alg.accuracy(dataset, labels_pred, self.test_idx, penalized, 'test')}")
             elapsed_time += end - start
-            #print(f"Test acc: {alg.accuracy(dataset, labels_pred, self.test_idx, penalized, 'test')}")
-
-            #print(f'Final weights')
-            #print(alg.alg.conv1.weight0)
-            #print(f'Min conv1: {np.min(alg.alg.conv1.weight0.detach().numpy())} - Max conv1: {np.max(alg.alg.conv1.weight0.detach().numpy())}')
-            #print(f'Min conv2: {np.min(alg.alg.conv2.weight0.detach().numpy())} - Max conv2: {np.max(alg.alg.conv2.weight0.detach().numpy())}')
 
         avg_train_acc = train_acc / self.N_RUNS
         avg_test_acc = test_acc / self.N_RUNS
