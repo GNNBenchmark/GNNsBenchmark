@@ -11,7 +11,7 @@ class Trainer:
         self.train_idx = train_idx
         self.val_idx = None # not used
         self.test_idx = torch.sort(torch.cat((val_idx, test_idx))).values # concatenate val and test
-        self.N_RUNS = 1
+        self.N_RUNS = 3
 
     def __call__(self, model: str, dataset, penalized, **kwargs):
         return self.train_eval(model, dataset, penalized, **kwargs)
