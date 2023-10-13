@@ -2,7 +2,27 @@
 
 [Submitted at TheWebConf2024]
 
-This repository contains all the source code for reproducing our experiments.
+This repository contains all the source code for reproducing our experiments. 
+
+## Datasets
+
+We use the following graph datasets in our experiments. All datasets are available in the `\data` directory.
+
+|Dataset| $$\|V\|$$ | $\|E\|$ | $L$ | $C$ | $\delta_A$ | $\delta_X$ |
+|-------|-----------|---------|-----|-----|------------|------------|
+| Cora             | 2708  | 10556  | 1433  | 7   | 2.88e-03     | 1.27e-02     |
+| Pubmed*          | 19717 | 88651  | 500   | 3   | 4.56e-04     | 1.00e-01     |
+| Citeseer         | 3327  | 9104   | 3703  | 6   | 1.65e-03     | 8.54e-03     |
+| Actor            | 7600  | 30019  | 932   | 5   | 1.04e-03     | 5.79e-03     |
+| CS               | 18333 | 163788 | 6805  | 15  | 9.75e-04     | 8.76e-03     |
+| Photo            | 7650  | 238162 | 745   | 8   | 8.14e-03     | 3.48e-01     |
+| Cornell          | 183   | 298    | 1703  | 5   | 1.79e-02     | 5.54e-02     |
+| Wisconsin        | 251   | 515    | 1703  | 5   | 1.64e-02     | 5.63e-02     |
+| Wikivitals       | 10011 | 824999 | 37845 | 11  | 8.23e-03     | 3.60e-03     |
+| Wikivitals-fr    | 9945  | 558427 | 28198 | 11  | 5.65e-03     | 3.12e-03     |
+| Wikischools      | 4403  | 112834 | 20527 | 16  | 5.82e-03     | 5.25e-03     |
+| Wikivitals+      | 45149 | 3946850| 85512 | 11  | 1.93e-03     | 1.24e-03     |
+
 
 ## Usage
 
