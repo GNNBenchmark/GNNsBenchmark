@@ -81,7 +81,7 @@ class BaseDataset:
         else:
             print(f'Building netset data...')
             # Convert dataset to NetSet format (scipy CSR matrices)
-            graph = self.to_netset()
+            graph = self.to_netset(dataset)
 
             # Save Netset dataset
             with open(os.path.join(pathname, dataset), 'bw') as f:
@@ -92,7 +92,7 @@ class BaseDataset:
         
         return self.netset
     
-    def to_netset(self):
+    def to_netset(self, dataset: str):
         """Convert data into Netset format and return Bunch object."""
         # nodes and edges
         rows = np.asarray(self.data.edge_index[0])
@@ -102,13 +102,16 @@ class BaseDataset:
         adjacency = sparse.coo_matrix((data, (rows, cols)), shape=(n, n)).tocsr()
 
         # Features
-        biadjacency = sparse.csr_matrix(np.array(self.data.x), dtype=bool)
+        if dataset.startswith('ogbn'):
+            biadjacency = sparse.csr_matrix(np.array(self.data.x))
+        else:
+            biadjacency = sparse.csr_matrix(np.array(self.data.x), dtype=bool)
 
         # Node information
         labels = np.array(self.data.y)
 
         graph = Bunch()
-        graph.adjacency = adjacency
+        graph.adjacency = adjacency.astype(bool)
         graph.biadjacency = biadjacency
         graph.labels_true = labels
 

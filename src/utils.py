@@ -6,7 +6,7 @@ import sys
 from base import BaseModel, BaseDataset
 from baseline import Baseline
 from dataset import PlanetoidDataset, WikivitalsDataset, CoAuthorDataset, \
-    ActorDataset, AmazonDataset, WebKBDataset, PubMedDataset
+    ActorDataset, AmazonDataset, WebKBDataset, PubMedDataset, OGBDataset
 from model import GNN, GNNDGLBase
 from sota_model import SOTAGNN
 
@@ -28,6 +28,8 @@ def get_dataset(dataset: str, undirected: bool, random_state: int, k: int, strat
         return AmazonDataset(dataset, undirected, random_state, k, stratified)
     elif dataset.lower() in ['cornell', 'wisconsin']:
         return WebKBDataset(dataset, undirected, random_state, k, stratified)
+    elif dataset.lower() in ['ogbn-mag', 'ogbn-products', 'ogbn-arxiv']:
+        return OGBDataset(dataset, undirected, random_state, k, stratified)
     else:
         raise ValueError(f'Unknown dataset: {dataset}.')
 

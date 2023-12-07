@@ -5,6 +5,8 @@ from scipy import sparse
 
 from base import BaseDataset
 
+from ogb.nodeproppred import PygNodePropPredDataset
+
 from sknetwork.data import load_netset, Bunch
 
 import torch
@@ -363,4 +365,63 @@ class WebKBDataset(BaseDataset):
                val_mask=torch.zeros(n_nodes, dtype=torch.bool),
                test_mask=torch.zeros(n_nodes, dtype=torch.bool))
         
+        return data
+
+
+class OGBDataset(BaseDataset):
+    """OGBN dataset (https://ogb.stanford.edu/docs/nodeprop/#ogbn-mag), restricted to citations between paper-paper."""
+
+    def __init__(self, dataset: str, undirected: bool, random_state: int, k: int, stratified: bool):
+        super(OGBDataset, self).__init__(dataset, undirected, random_state, k, stratified)
+
+    def get_data(self, dataset: str, undirected: bool):
+        """Get dataset information.
+        
+        Parameters
+        ----------
+        dataset: str
+            Dataset name
+        undirected: bool
+            If True dataset is forced to undirected.
+            
+        Returns
+        -------
+            Torch Dataset. """
+        data = self._to_custom_data(PygNodePropPredDataset(name=dataset), dataset)
+        return data
+    
+    def _to_custom_data(self, data, dataset):
+        """Convert Dataset format from Pytorch to a modifiable Data object."""
+        g = data[0]
+        if dataset == 'ogbn-mag':
+            paper_n_nodes = g.num_nodes_dict.get('paper')
+            paper_labels = g.y_dict.get('paper').view(-1)
+            paper_n_labels = len(torch.unique(paper_labels))
+            edge_index_key = ('paper', 'cites', 'paper')
+            data = Data(x=g.x_dict.get('paper'),
+                edge_index=g.edge_index_dict[edge_index_key],
+                num_classes=paper_n_labels,
+                y=paper_labels,
+                train_mask=torch.zeros(paper_n_nodes, dtype=torch.bool),
+                val_mask=torch.zeros(paper_n_nodes, dtype=torch.bool),
+                test_mask=torch.zeros(paper_n_nodes, dtype=torch.bool))
+        elif dataset == 'ogbn-products':
+            n_nodes = data.x.shape[0]
+            data = Data(x=data.x,
+            edge_index=data.edge_index,
+            num_classes=len(torch.unique(data.y.view(-1))),
+            y=data.y.view(-1),
+            train_mask=torch.zeros(n_nodes, dtype=torch.bool),
+            val_mask=torch.zeros(n_nodes, dtype=torch.bool),
+            test_mask=torch.zeros(n_nodes, dtype=torch.bool))
+        elif dataset == 'ogbn-arxiv':
+            n_nodes = data.x.shape[0]
+            data = Data(x=data.x,
+            edge_index=data.edge_index,
+            num_classes=len(torch.unique(data.y.view(-1))),
+            y=data.y.view(-1),
+            train_mask=torch.zeros(n_nodes, dtype=torch.bool),
+            val_mask=torch.zeros(n_nodes, dtype=torch.bool),
+            test_mask=torch.zeros(n_nodes, dtype=torch.bool))
+
         return data

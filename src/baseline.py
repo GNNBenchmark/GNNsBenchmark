@@ -83,7 +83,7 @@ class Baseline(BaseModel):
         """
         # Transform data
         X = self.transform_data(dataset, **kwargs)
-
+        
         # Logistic regression from Sklearn does not have a fit_predict method
         if self.name == 'logistic_regression':
             labels_pred = self.alg.fit(X[train_idx, :],
