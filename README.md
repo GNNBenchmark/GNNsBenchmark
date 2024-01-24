@@ -1,7 +1,5 @@
 # Graph Neural Networks: The Surprising Superiority of Logistic Regression
 
-[Submitted at TheWebConf2024]
-
 This repository contains all the source code for reproducing our experiments. 
 
 ## Datasets
@@ -45,29 +43,6 @@ For all experiments (not recommended), use:
 ```
 
 ## Additional material
-
-Accuracy on `ogbn-arxiv` graph.
-
-| Model |	ogbn-arxiv |
-|-------|--------------|
-|GCN	| 51.24 ± 0.3 |
-| GraphSage| 	58.25 ± 0.4 |
-| GAT |	57.39 ± 0.2 |
-| SGC |	46.21 ± 0.1 |
-| GCNII | - |
-| APPNP	|50.47 ± 0.1 |
-| jumpingknowledge	|53.34 ± 0.4 |
-| H2GCN	| 62.42 ± 0.2 |
-||
-| KNN w/ sp.-A | - |
-| Diffusion-A |	29.30 ± 0.1 |
-| Logistic Reg.-A |	55.27 ± 0.2 |
-| KNN w/ sp.-X | - |
-| Diffusion-X |	12.12 ± 1.8 |
-| Logistic Reg.-X |	54.29 ± 0.1 |
-| KNN w/ sp.-AX |	- |
-| Diffusion-AX |	10.51 ± 4.0 |
-| Logistic Reg.-AX | **64.79 ± 0.0** |
 
 We provide additional information about label homophily distribution. We observe that `ogbn-arxiv` and `Cora` exhibit relatively large label homophily, compared to `Wikivitals` graph.
 
