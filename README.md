@@ -20,7 +20,7 @@ We use the following graph datasets in our experiments. All datasets are availab
 | Wikivitals-fr    | 9945  | 558427 | 28198 | 11  | 5.65e-03     | 3.12e-03     |
 | Wikischools      | 4403  | 112834 | 20527 | 16  | 5.82e-03     | 5.25e-03     |
 | Wikivitals+      | 45149 | 3946850| 85512 | 11  | 1.93e-03     | 1.24e-03     |
-| ogbn-arxiv       | 169343 | 1166246| 85512 | 40  | 8.14e-05     | 7.65e-04     |
+| ogbn-arxiv       | 169343 | 1166246| 128 | 40  | 8.14e-05     | 7.65e-04     |
 
 
 ## Usage
