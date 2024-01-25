@@ -189,7 +189,7 @@ class PlanetoidDataset(BaseDataset):
         else:
             print(f'Building netset data...')
             # Convert dataset to NetSet format (scipy CSR matrices)
-            graph = self.to_netset()
+            graph = self.to_netset(dataset)
 
             # Save Netset dataset
             with open(os.path.join(pathname, dataset), 'bw') as f:
