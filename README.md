@@ -5,6 +5,7 @@ This repository contains all the source code for reproducing our experiments.
 ## Datasets
 
 We use the following graph datasets in our experiments. All datasets are available in the `\data` directory.
+In the following, $|V|$ denotes the number of nodes, $|E|$ the number of edges, $L$ the number of features, $C$ the number of labels, $\delta_A$ the edge density and $\delta_X$ the attribute density. 
 
 |Dataset| $$\|V\|$$ | $\|E\|$ | $L$ | $C$ | $\delta_A$ | $\delta_X$ |
 |-------|-----------|---------|-----|-----|------------|------------|
